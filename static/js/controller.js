@@ -19,7 +19,6 @@ var controllerMod = angular.module('controllerMod', [])
 
                 $scope.data = data;
                 $scope.total = Math.ceil($scope.data.total / count);
-
                 $scope.$apply()
             });
 
@@ -68,7 +67,6 @@ var controllerMod = angular.module('controllerMod', [])
 
             $scope.$on("top250Data", function (event, data) {
                 $scope.data = data;
-                console.log(data);
                 $scope.total = Math.ceil($scope.data.total / count);
                 $scope.$apply();
             });
@@ -91,7 +89,6 @@ var controllerMod = angular.module('controllerMod', [])
 
             $scope.$on("us_boxData", function (event, data) {
                 $scope.data = data;
-                console.log(data);
                 $scope.total = Math.ceil($scope.data.total / count);
                 $scope.$apply();
             });
