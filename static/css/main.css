@@ -5,17 +5,26 @@
 ul {
     list-style: none;
 }
-img {
-    max-height: 300px;
-}
-
 .movie-data {
     padding-left: 20px;
     padding-right: 20px;
 }
+.dropdown-menu {
+    background: #333;
+}
+.dropdown-menu a {
+    color: #9d9d9d!important;
+}
 .thumbnail {
-    padding-left: 15px;
-    padding-right: 15px;
+    padding: 15px;
+}
+.thumbnail img {
+    transition: all 0.5s;
+    max-height: 300px;
+}
+.thumbnail img:hover {
+    box-shadow: 2px 2px 20px #888888;
+    transform: scale(1.1);
 }
 
 .fixed-height {
@@ -31,6 +40,9 @@ img {
 .summary p {
     text-indent: 2em;
 }
+.info img {
+    max-width: 300px;
+}
 .info-list li{
     font-size: 12px;
     margin-bottom: 5px;
@@ -40,4 +52,28 @@ img {
 }
 .medium-img {
     height: 150px;
+}
+.movie-slide {
+    width: 80%;
+}
+.movie-slide img {
+    width: 100%;
+    max-width: 200px;
+    margin: 0 auto;
+}
+/*图书模块*/
+.poster-slide  img{
+    width: 100%;
+    margin: 0 auto;
+}
+#book-search {
+    margin-bottom: 20px;
+}
+
+.book-tag>ul>li {
+    float: left;
+}
+
+.book-list .tag span{
+    color:orangered;
 }

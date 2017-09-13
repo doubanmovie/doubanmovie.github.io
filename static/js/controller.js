@@ -6,7 +6,6 @@ var controllerMod = angular.module('controllerMod', [])
         '$stateParams',
         'in_theatersSer',
         function ($scope, $stateParams, in_theatersSer) {
-
             //当前页数
             $scope.page = Number($stateParams.page);
             //每页显示12部电影
@@ -19,7 +18,6 @@ var controllerMod = angular.module('controllerMod', [])
 
                 $scope.data = data;
                 $scope.total = Math.ceil($scope.data.total / count);
-
                 $scope.$apply()
             });
 
@@ -125,7 +123,7 @@ var controllerMod = angular.module('controllerMod', [])
             });
         }])
 
-    // 搜索 提供关键字
+    // 电影搜索 提供关键字
     .controller('searchCtrl', ['$scope',
         '$location',
         function ($scope, $location) {
@@ -146,9 +144,7 @@ var controllerMod = angular.module('controllerMod', [])
         function ($scope, $stateParams, searchListSer) {
             //获取关键字
             var keyword = $stateParams.keyword;
-            $scope.keyword = $stateParams.keyword;
-            console.log($stateParams);
-            console.log(keyword);
+
             //获取当前页数
             $scope.page = Number($stateParams.page);
 
@@ -173,6 +169,130 @@ var controllerMod = angular.module('controllerMod', [])
 
 
     }])
+
+    //电影模块图片轮播
+    .controller('movieSwiperCtrl',['$scope',function ($scope) {
+
+      $scope.swiper = function () {
+          new Swiper('.swiper-container', {
+              pagination: '.swiper-pagination',
+              slidesPerView: 4,
+              centeredSlides: true,
+              spaceBetween: 30,
+              loop: true,
+              autoplay:1000
+          });
+      };
+
+
+    }])
+
+    //图书模块
+    .controller('bookCrtl',['$scope','$rootScope','bookSer',function ($scope,$rootScope,bookSer) {
+        //轮播图
+        bookSer.getSwiper()
+            .then(function (res) {
+                $scope.poster = res.data;
+            });
+        //标签
+        bookSer.getTags()
+            .then(function (res) {
+                $scope.tags = res.data;
+            })
+
+    }])
+
+    //控制图书模块图片轮播
+    .controller('bookSwiperCtrl',['$scope',function ($scope) {
+
+        $scope.swiper = function () {
+            new Swiper('.swiper-container', {
+                pagination: '.swiper-pagination',
+                paginationClickable: '.swiper-pagination',
+                spaceBetween: 30,
+                effect: 'fade',
+                loop: true,
+                autoplay:3000
+            });
+        };
+    }])
+
+    // 图书搜索 提供关键字
+    .controller('bookSearchCtrl', ['$scope',
+        '$location',
+        function ($scope, $location) {
+            $scope.getBookData = function () {
+                if(!$scope.keyword){
+                    return;
+                }
+                $location.path('/bookSearch/' + $scope.keyword+'/1');
+            };
+        }])
+
+    //图书条目搜索
+    .controller('bookListCtrl', [
+        '$scope',
+        '$stateParams',
+        'bookSearchSer',
+        function ($scope, $stateParams, bookSearchSer) {
+            //获取关键字
+            var keyword = $stateParams.keyword;
+            //获取当前页数
+            $scope.page = Number($stateParams.page);
+            var count = 12;
+            var start = ($scope.page - 1) * count;
+            bookSearchSer.getList(keyword,start,count);
+            $scope.$on('bookSearchData', function (event, data) {
+                $scope.data = data;
+                $scope.total = Math.ceil($scope.data.total / count);
+                $scope.$apply();
+            });
+        }])
+    .controller('bookDetailsCrtl', [
+        '$scope',
+        '$stateParams',
+        'bookDetailsSer',
+        function ($scope, $stateParams, bookDetailsSer) {
+            //获取关键字
+            var id = $stateParams.id;
+            bookDetailsSer.getDetails(id);
+            $scope.$on('bookDetailsData', function (event, data) {
+                $scope.data = data;
+                $scope.$apply();
+            });
+        }])
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     //改变出生地格式 (报错原因未知)
    /* .filter('birthplaceFlt',[function () {

@@ -1,4 +1,13 @@
 <div class="container">
+    <div class="swiper-container movie-slide" ng-controller="movieSwiperCtrl">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide" ng-repeat="item in data.subjects" ng-swiper="swiper()">
+                <a ui-sref="subject({id:item.id})"><img ng-src="{{item.images.large}}"></a>
+            </div>
+        </div>
+        <!-- Add Pagination -->
+        <div class="swiper-pagination"></div>
+    </div>
     <div class="page-header">
         <h2>{{ data.title }}</h2>
     </div>

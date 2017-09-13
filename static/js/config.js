@@ -1,5 +1,7 @@
 var configMod = angular.module('configMod', []);
 
 configMod.constant("ENV", {
-    api: "https://api.douban.com/v2/movie/",
+    movieApi: "https://api.douban.com/v2/movie/",
+    bookApi: "https://api.douban.com/v2/book/",
+    musicApi: "https://api.douban.com/v2/music/"
 });

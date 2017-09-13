@@ -1,0 +1,73 @@
+<header class="navbar navbar-inverse navbar-fixed-top" >
+    <div class="container">
+        <div class="navbar-header">
+            <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#bs-navbar"
+                    aria-controls="bs-navbar" aria-expanded="false">
+                <span class="sr-only"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="#" class="navbar-brand">豆瓣</a>
+        </div>
+        <nav id="bs-navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li><a ui-sref="books">豆瓣读书</a></li>
+
+            </ul>
+
+            <form class="navbar-form navbar-left"
+                  role="search"
+                  ng-controller="bookSearchCtrl"
+                  ng-submit="getBookData()">
+                <div class="form-group">
+                    <input type="text" class="form-control input-sm" ng-model="keyword">
+                </div>
+                <!----------------  搜索功能 ------------------------>
+                <button type="submit" class="btn btn-success btn-sm">图书搜索</button>
+            </form>
+            <ul class="nav navbar-nav">
+                <li><a ui-sref="in_theaters({page:1})">豆瓣电影</a></li>
+                <li><a ui-sref="music">豆瓣音乐</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="https://developers.douban.com">豆瓣API</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+<div class="container">
+    <div class="page-header">
+        <h3>{{ data.title }}
+            <small>{{ data.original_title }}</small>
+        </h3>
+    </div>
+    <div class="info">
+        <div class="row">
+            <div class="col-sm-4">
+                <img ng-src="{{ data.images.medium }}" class="center-block">
+            </div>
+            <div class="col-sm-4">
+                <ul class="info-list">
+                    <li>作者:<span ng-repeat="item in data.author">{{item}}{{$last?"":" / "}}</span></li>
+                    <li>出版社: {{data.publisher}}</li>
+                    <li>译者:  <span ng-repeat="item in data.translator">{{item}}{{$last?"":" / "}}</span></li>
+                    <li>出版年: {{data.binding}}</li>
+                    <li>页数: {{data.pages}}</li>
+                    <li>装帧: {{data.binding}}</li>
+                    <li>丛书: </li>
+                    <li>ISBN: {{data.isbn13}}</li>
+                </ul>
+            </div>
+        </div>
+        <div class="summary">
+            <h4>内容简介  · · · · · ·</h4>
+            <p>{{data.summary}}</p>
+            <h4 ng-if="data.summary">作者简介  · · · · · ·</h4>
+            <p>{{data.author_intro}}</p>
+            <h4 ng-if="data.catalog">章节</h4>
+            <p>{{data.catalog}}</p>
+        </div>
+    </div>
+
+</div>

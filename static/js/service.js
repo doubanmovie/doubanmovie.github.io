@@ -29,7 +29,7 @@ var movieServiceMod = angular.module('movieServiceMod', [])
 
         this.getList = function (start, count) {
             JSONP.myJSONP({
-                url: ENV.api + "in_theaters",
+                url: ENV.movieApi + "in_theaters",
                 data: {
                     start: start,
                     count: count
@@ -47,7 +47,7 @@ var movieServiceMod = angular.module('movieServiceMod', [])
 
         this.getList = function (start, count) {
             JSONP.myJSONP({
-                url: ENV.api + "coming_soon",
+                url: ENV.movieApi + "coming_soon",
                 data: {
                     start: start,
                     count: count
@@ -66,7 +66,7 @@ var movieServiceMod = angular.module('movieServiceMod', [])
 
         this.getList = function (start, count) {
             JSONP.myJSONP({
-                url: ENV.api + "top250",
+                url: ENV.movieApi + "top250",
                 data: {
                     start: start,
                     count: count
@@ -85,7 +85,7 @@ var movieServiceMod = angular.module('movieServiceMod', [])
         return {
             getList: function () {
                 JSONP.myJSONP({
-                    url: ENV.api + "us_box",
+                    url: ENV.movieApi + "us_box",
                     success: function (res) {
                         // 向外广播
                         $rootScope.$broadcast("us_boxData", res);
@@ -100,7 +100,7 @@ var movieServiceMod = angular.module('movieServiceMod', [])
         return {
             getDetails: function (id) {
                 JSONP.myJSONP({
-                    url: ENV.api + "subject/" + id,
+                    url: ENV.movieApi + "subject/" + id,
                     success: function (res) {
                         // 向外广播
                         console.log(res);
@@ -116,7 +116,7 @@ var movieServiceMod = angular.module('movieServiceMod', [])
         return {
             getDetails: function (id) {
                 JSONP.myJSONP({
-                    url: ENV.api + "celebrity/" + id,
+                    url: ENV.movieApi + "celebrity/" + id,
                     success: function (res) {
                         // 向外广播
                         console.log(res);
@@ -132,7 +132,7 @@ var movieServiceMod = angular.module('movieServiceMod', [])
         return {
             getList: function (keyword, start, count) {
                 JSONP.myJSONP({
-                    url: ENV.api + "search",
+                    url: ENV.movieApi + "search",
                     data: {
                         q: keyword,
                         start: start,
@@ -147,4 +147,49 @@ var movieServiceMod = angular.module('movieServiceMod', [])
             }
         }
 
-    }]);
+    }])
+
+
+    .factory('bookSer', ['$http', function ($http) {
+
+        return {
+            getSwiper: function () {
+                return $http.get('./static/data/poster.json');
+            },
+            getTags: function () {
+                return $http.get('./static/data/tags.json');
+            }
+        }
+
+    }])
+
+    .service('bookSearchSer',['$rootScope',"JSONP",'ENV',function ($rootScope,JSONP,ENV) {
+
+        this.getList = function (keyword,start,count) {
+            JSONP.myJSONP({
+                url: ENV.bookApi + "search",
+                data: {
+                    q: keyword,
+                    start:start,
+                    count:count
+                },
+                success: function (res) {
+                    // 向外广播
+                    $rootScope.$broadcast("bookSearchData", res);
+                }
+            });
+        }
+    }])
+
+    .service('bookDetailsSer',['$rootScope',"JSONP",'ENV',function ($rootScope,JSONP,ENV) {
+
+        this.getDetails = function (id) {
+            JSONP.myJSONP({
+                url: ENV.bookApi + id ,
+                success: function (res) {
+                    // 向外广播
+                    $rootScope.$broadcast("bookDetailsData", res);
+                }
+            });
+        }
+    }])
