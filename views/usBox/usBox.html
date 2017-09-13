@@ -19,14 +19,6 @@
             </div>
         </div>
     </div>
-    <ul class="pager" ng-controller="paginCtrl">
-        <!------------- 分页 ---------------->
-        <li ng-class={"disabled":page==1}>
-            <a ui-sref="{{anchor}}({page:page==1?1:page-1})">上一页</a>
-        </li>
-        <li ng-class={"disabled":page==total}>
-            <a ui-sref="{{anchor}}({page:page==total?total:page+1})">下一页</a>
-        </li>
-    </ul>
+    
 </div>
 </div>
