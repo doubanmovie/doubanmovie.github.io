@@ -1,0 +1,27 @@
+<div class="container">
+    <div class="page-header">
+        <h2>{{ data.title }} <small>{{data.date}}</small></h2>
+    </div>
+    <div class="row">
+        <div class="col-sm-6 col-md-4 col-lg-3" ng-repeat="item in data.subjects">
+            <div class="thumbnail">
+                <div title="点击查看更多海报">
+                    <a ui-sref="subject({id:item.subject.id})"><img ng-src="{{ item.subject.images.large }}"></a>
+                </div>
+                <div class="movie-data">
+                    <h4>{{ item.subject.title }}</h4>
+                    <p class="fixed-height">导演：<a ui-sref="celebrity({id:director.id})" ng-repeat="director in item.subject.directors">{{ director.name }} {{$last?"":"/"}} </a></p>
+                    <p class="fixed-height">主演：<a ui-sref="celebrity({id:cast.id})" ng-repeat="cast in item.subject.casts">{{ cast.name }} {{$last?"":"/"}} </a></p>
+                    <p>类型: <span ng-repeat="genre in item.subject.genres">{{genre}} {{$last?"":"/"}} </span></p>
+                    <p>上映日期：<span>{{ item.subject.year }}</span></p>
+                    <p>评分：{{ item.subject.rating.average }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <ul class="pager">
+        <li><a href="javascript:;">上一页</a></li>
+        <li><a href="javascript:;">下一页</a></li>
+    </ul>
+</div>
+</div>

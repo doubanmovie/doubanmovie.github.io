@@ -1,0 +1,48 @@
+<div class="container">
+    <div class="page-header">
+        <h3>{{ data.title }}
+            <small>{{ data.original_title }}</small>
+        </h3>
+    </div>
+    <div class="info">
+        <div class="row">
+            <div class="col-sm-4">
+                <img ng-src="{{ data.images.large }}" class="center-block">
+            </div>
+            <div class="col-sm-4">
+                <ul class="info-list">
+                    <li>
+                        导演：<a ui-sref="celebrity({id:director.id})" ng-repeat="director in data.directors">{{ director.name }} {{$last?"":"/"}} </a>
+                    </li>
+                    <li>
+                        主演：<a ui-sref="celebrity({id:cast.id})" ng-repeat="cast in data.casts">{{ cast.name }} {{$last?"":"/"}} </a>
+                    </li>
+                    <li>
+                        类型: <span ng-repeat="genre in data.genres">{{ genre }} {{$last?"":"/"}} </span>
+                    </li>
+                    <li>
+                        制片国家/地区: <span ng-repeat="countrie in data.countries">{{ countrie }} {{$last?"":"/"}} </span>
+                    </li>
+                    <li>
+                        上映日期：<span>{{ data.year }}</span>
+                    </li>
+                    <li>
+                        评分：{{ data.rating.average }}
+                    </li>
+                    <li>
+                        又名: <span ng-repeat="name in data.aka">{{ name }} {{$last?"":"/"}} </span>
+                    </li>
+                    <li>
+                        评论人数：<span class="text-success">{{ data.reviews_count }}</span>
+                        想看人数：<span class="text-success">{{ data.wish_count }}</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="summary">
+            <h4>{{ data.title }}的剧情简介 · · · · · ·</h4>
+            <p>{{ data.summary }}</p>
+        </div>
+    </div>
+
+</div>

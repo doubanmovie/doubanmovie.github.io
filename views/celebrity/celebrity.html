@@ -1,0 +1,48 @@
+<div class="container">
+    <div class="page-header">
+        <h3>{{ data.name }}
+            <small>{{ data.name_en }}</small>
+        </h3>
+    </div>
+    <div>
+        <div class="info">
+            <div class="row">
+                <div class="col-sm-4">
+                    <img ng-src="{{ data.avatars.large }}" class="center-block">
+                </div>
+                <div class="col-sm-4">
+                    <p>性别： <span>{{ data.gender }}</span></p>
+                    <p>出生地： <span ng-bind="data.born_place"></span></p>
+                    <p>更多外文名： <span ng-repeat="name in data.aka_en">{{ name }} {{$last?"":"/"}} </p>
+                    <p>
+                        更多中文名: <span ng-repeat="name in data.aka">{{ name }} {{$last?"":"/"}} </span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="page-header">
+        <h3>其他作品</h3>
+    </div>
+    <div class="row">
+        <div class="col-sm-6 col-md-4 col-lg-3" ng-repeat="item in data.works">
+            <div class="thumbnail">
+                <div class="medium-img">
+                    <a ui-sref="subject({id:item.subject.id})"><img ng-src="{{ item.subject.images.medium }}"></a>
+                </div>
+                <div class="movie-data">
+                    <h5>{{ item.subject.title }}</h5>
+                    <ul class="info-list">
+                        <li>职业： <span ng-repeat="role in item.roles">{{ role }} {{$last?"":"/"}} </span></li>
+                        <li class="fixed-height">主演： <a ui-sref="celebrity({id:cast.id})"  ng-repeat="cast in item.subject.casts">{{ cast.name }} {{$last?"":"/"}} </a></li>
+                        <li>类型： <span ng-repeat="genre in item.subject.genres">{{ genre }} {{$last?"":"/"}} </span></li>
+                        <li>评分： <span>{{ item.subject.rating.average }}</span></li>
+                        <li>分类： <span>{{ item.subject.subtype }}</span></li>
+                        <li>年份： <span>{{ item.subject.year }}</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

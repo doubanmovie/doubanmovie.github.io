@@ -1,0 +1,43 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+ul {
+    list-style: none;
+}
+img {
+    max-height: 300px;
+}
+
+.movie-data {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+.thumbnail {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.fixed-height {
+    height: 40px;
+}
+.summary {
+    margin-top: 20px;
+    padding: 20px;
+}
+.summary h4 {
+    color: #007722;
+}
+.summary p {
+    text-indent: 2em;
+}
+.info-list li{
+    font-size: 12px;
+    margin-bottom: 5px;
+}
+.info-list .fixed-height {
+    height: 30px;
+}
+.medium-img {
+    height: 150px;
+}
