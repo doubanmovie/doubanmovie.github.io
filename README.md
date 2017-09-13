@@ -1,37 +1,22 @@
-## Welcome to GitHub Pages
+## 项目简介
 
-You can use the [editor on GitHub](https://github.com/doubanmovie/doubanmovie.github.io/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+共分为正在热映、即将上映、豆瓣top250、北美电影榜、电影搜索、电影条目信息、影人条目信息、影人作品等模块。
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+使用 boostrap 搭建静态页面，响应式布局。
 
-### Markdown
+使用 angularjs 构建单页面应用，mvc模式。
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+使用 angular-ui-router 路由模块。
 
-```markdown
-Syntax highlighted code block
+使用豆瓣Api免费接口 (https://developers.douban.com/)  跨域请求数据
 
-# Header 1
-## Header 2
-### Header 3
 
-- Bulleted
-- List
 
-1. Numbered
-2. List
+## 注意事项
 
-**Bold** and _Italic_ and `Code` text
+由于豆瓣Api callback只能包含数字、字母、下划线，长度不大于50,而angularjs  callback包含'.',所以无法使用，需要自己封装 jsonp 函数
 
-[Link](url) and ![Image](src)
-```
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
 
-### Jekyll Themes
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/doubanmovie/doubanmovie.github.io/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
 
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
