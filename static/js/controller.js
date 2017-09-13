@@ -19,6 +19,7 @@ var controllerMod = angular.module('controllerMod', [])
 
                 $scope.data = data;
                 $scope.total = Math.ceil($scope.data.total / count);
+
                 $scope.$apply()
             });
 
@@ -67,6 +68,7 @@ var controllerMod = angular.module('controllerMod', [])
 
             $scope.$on("top250Data", function (event, data) {
                 $scope.data = data;
+                console.log(data);
                 $scope.total = Math.ceil($scope.data.total / count);
                 $scope.$apply();
             });
@@ -79,17 +81,11 @@ var controllerMod = angular.module('controllerMod', [])
         '$stateParams',
         'us_boxSer',
         function ($scope,  $stateParams,us_boxSer) {
-            //获取当前页数
-            $scope.page = Number($stateParams.page);
-            //每页显示12部电影
-            var count = 12;
-            var start = ($scope.page - 1) * count;
-
-            us_boxSer.getList(start, count);
+            us_boxSer.getList();
 
             $scope.$on("us_boxData", function (event, data) {
                 $scope.data = data;
-                $scope.total = Math.ceil($scope.data.total / count);
+                console.log(data);
                 $scope.$apply();
             });
         }])

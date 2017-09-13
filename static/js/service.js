@@ -1,6 +1,6 @@
 var movieServiceMod = angular.module('movieServiceMod', [])
 
-    //封装jsonp函数
+//封装jsonp函数
     .service('JSONP', [function () {
         this.myJSONP = function (options) {
             var url = options.url,
@@ -64,7 +64,7 @@ var movieServiceMod = angular.module('movieServiceMod', [])
     //top250列表     ((service())
     .service('top250Ser', ['$rootScope', 'JSONP', 'ENV', function ($rootScope, JSONP, ENV) {
 
-        this.getList = function (start,count) {
+        this.getList = function (start, count) {
             JSONP.myJSONP({
                 url: ENV.api + "top250",
                 data: {
@@ -83,13 +83,9 @@ var movieServiceMod = angular.module('movieServiceMod', [])
     //北美票房榜    (factory())
     .factory('us_boxSer', ['$rootScope', 'JSONP', 'ENV', function ($rootScope, JSONP, ENV) {
         return {
-            getList: function (start,count) {
+            getList: function () {
                 JSONP.myJSONP({
                     url: ENV.api + "us_box",
-                    data: {
-                        start: start,
-                        count: count
-                    },
                     success: function (res) {
                         // 向外广播
                         $rootScope.$broadcast("us_boxData", res);
@@ -132,13 +128,13 @@ var movieServiceMod = angular.module('movieServiceMod', [])
     }])
 
     //电影条目搜索
-    .factory('searchListSer',['$rootScope', 'JSONP', 'ENV',function ($rootScope, JSONP, ENV) {
+    .factory('searchListSer', ['$rootScope', 'JSONP', 'ENV', function ($rootScope, JSONP, ENV) {
         return {
-            getList:function (keyword,start,count) {
+            getList: function (keyword, start, count) {
                 JSONP.myJSONP({
                     url: ENV.api + "search",
                     data: {
-                        q:keyword,
+                        q: keyword,
                         start: start,
                         count: count
                     },
