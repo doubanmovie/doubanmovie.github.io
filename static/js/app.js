@@ -7,7 +7,7 @@ var app = angular.module('myApp', ['ui.router',
     .config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
 
         // 错误的路由重定向
-     //  $urlRouterProvider.otherwise("in_theaters/1");
+      $urlRouterProvider.otherwise("in_theaters/1");
 
         $stateProvider
             //正在热映
